@@ -5,10 +5,15 @@ class User < ActiveRecord::Base
   :recoverable, :rememberable, :trackable, :validatable, :confirmable
   
    def admin?
-   role == 'admin'
- end
- 
- def moderator?
-   role == 'moderator'
- end
+    role == 'admin'
+  end
+
+  def premium?
+    role == 'premium'
+  end
+  
+  def init
+    self.role ||= 'standard'
+  end
+
 end
