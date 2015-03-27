@@ -1,7 +1,21 @@
 <br/>
+<center><h1>Blocipedia: Social, Markdown Wikis</h1></center>
 <div class="jumbotron">
-  <h1>Blocipedia</h1>
-      <%= link_to "Sign In", new_user_session_path, class: 'btn btn-primary' %> or
-      <%= link_to "Sign Up", new_user_registration_path, class: 'btn btn-primary' %> today!
-  </p>
+  <center><h1>Create and share Wikis</h1></center>
+</div>
+
+<div class="row">
+  <div class="col-md-4">
+   
+  </div>
+  <div class="col-md-4">
+     <%= link_to  "Sign Up for Free Account", new_user_registration_path, class: 'btn btn-primary btn' %> 
+  </div>
+  <div class="col-md-4">
+     <% if current_user %>
+      <%= link_to  "Sign Up for a Premium Account", new_charge_path, class: 'btn btn-primary btn' %>
+    <% else %>
+      <%= link_to  "Sign Up for a Premium Account", new_user_session_path, class: 'btn btn-primary btn' %>
+    <% end %>
+  </div>
 </div>

@@ -1,0 +1,17 @@
+Collaborators for <%= @wiki.title %>
+
+<table class="table">
+<% @users.each do |user| %>
+  <tr>
+    <td><%= user.name %></td>
+    <td><%= user.email %></td>
+    <td>
+      <% if @wiki.collaborators.collect(&:user).include?(user) %>
+      <%= link_to "Remove", wiki_collaborators_path(@wiki, collaborator), method: :delete, "btn btn-success" %>
+      <% else %>
+      <%= link_to "Add as Collaborator", wiki_collaborators_path(@wiki, user_id: user.id), method: :post, class: "btn btn-success" %>
+      <% end %>
+    </td>
+  </tr>
+<% end %>
+</table>
