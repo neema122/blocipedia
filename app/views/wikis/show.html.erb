@@ -1,3 +1,4 @@
 <h1><%= markdown_to_html @wiki.title %></h1>
 <%= link_to "Edit", edit_wiki_path(@wiki), class: 'btn btn-success' %>
+<%= link_to "Manage Collaborators", wiki_collaborators_path(@wiki) %>
  <p><%= markdown_to_html @wiki.body %></p>

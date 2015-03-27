@@ -5,7 +5,7 @@ Blocipedia::Application.routes.draw do
   devise_for :users
 
   resources :wikis do
-    resources :collaborators, only: [:create, :destroy]
+    resources :collaborators, only: [:index, :create, :destroy]
   end
 
   get 'about' => 'welcome#about'

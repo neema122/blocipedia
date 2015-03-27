@@ -1,9 +1,14 @@
 class CollaboratorsController < ApplicationController
+  
+  before_action :set_wiki
+  respond_to :html, :js
+  
+  def index
+    @users = User.all
+  end
 
   def create
-    @wiki = Wiki.find(params[:wiki_id])
-
-    @collaborator = @wiki.collaborators.build(collaborator_params)
+    @collaborator = @wiki.collaborators.build(user_id: params[:user_id])
   
 
     if @collaborator.save
@@ -13,18 +18,13 @@ class CollaboratorsController < ApplicationController
     end
 
     respond_with(@collaborator) do |f|
-      f.html { redirect_to edit_wiki_path(@wiki) }
+      f.html { redirect_to wiki_collaborators_path(@wiki) }
     end
   end
 
     def destroy
-    @wiki = Wiki.find(params[:wiki_id])  
-
     @collaborator = @wiki.collaborators.find(params[:id])
-
-   
-   
-
+      
     if @collaborator.destroy
       flash[:notice] = "Item was removed."
     else
@@ -32,7 +32,14 @@ class CollaboratorsController < ApplicationController
     end
 
     respond_with(@collaborator) do |f|
-      f.html { redirect_to edit_wiki_path(@wiki) }
+      f.html { redirect_to wiki_collaborators_path(@wiki)  }
     end
   end
+
+  private
+
+  def set_wiki
+    @wiki = Wiki.find(params[:wiki_id])
+  end
+
 end
